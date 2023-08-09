@@ -1,18 +1,20 @@
 ---
 page_type: sample
-name: AzProjectName
+name: AzStorageProjectName
 topic: sample
 description: |
-  AzProjectName is a sample application designed to ...... COMPLETE THE DESCRIPTION - Use the same description to edit the repository description.
+  AzStorageProjectName is a sample application designed to ...... COMPLETE THE DESCRIPTION - Use the same description to edit the repository description.
 languages:
   - csharp
 products:
   - azure
+  - azure-storage
   - azure-blob-storage
 urlFragment: update-this-to-unique-url-stub
 ---
 
-# Azure Storage & SWS Open Source Repo Template
+# Azure Storage Open Source Repo Template
+
 This repository is a template to guide developers who want to release open-source projects under Microsoft’s Organizations, specifically for Azure.
 Update the README header and remove instructions.
 <!-- 
@@ -27,7 +29,7 @@ Give a short description for your sample here. What does it do and why is it imp
 
 ## Contents
 
-Sample outline of the file contents of the repository. Helps users navigate the codebase, build configuration and any related assets. Edit according to your project's structure. 
+Sample outline of the file contents of the repository. Helps users navigate the codebase, build configuration and any related assets. Edit according to your project's structure.
 
 | File/folder       | Description                                |
 |-------------------|--------------------------------------------|
