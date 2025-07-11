@@ -45,7 +45,7 @@ Create a `config.txt` file in the same directory as the script with the followin
 - resourceGroup
 - resourceName
 
-Note: Do nto add any quotes around the values.
+Note: Do not add any quotes around the values.
 
 ## Usage
 
@@ -68,6 +68,9 @@ The script uses ARMClient.exe to interact with Azure Resource Manager APIs direc
 It replaces deprecated properties like discoveryScopes and discoveryScopeLevels with scopes and workspaceRoots.
 Ensure the original ASDW resource is not in use before deletion.
 Always review the log file for any issues or validation errors.
+
+> [!IMPORTANT]
+> This script is provided as-is without warranty. It is intended for demonstration or evaluation on non-production purposes only.
 
 ## Trademarks
 
