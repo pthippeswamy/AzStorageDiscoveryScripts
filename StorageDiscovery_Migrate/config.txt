@@ -1,0 +1,4 @@
+targetTenantId = 
+subscriptionId = 
+resourceGroup = 
+resourceName = 

@@ -1,11 +1,11 @@
 ---
 page_type: sample
-name: AzStorageProjectName
+name: AzStorageDiscoveryScripts
 topic: sample
 description: |
-  AzStorageProjectName is a sample application designed to ...... COMPLETE THE DESCRIPTION - Use the same description to edit the repository description.
+  AzStorageDiscoveryScripts has a simple script to migrate Storage Discovery resource created with API verison 2025-04-01-preview to Discovery resource of version 2025-06-01-preview.
 languages:
-  - csharp
+  - powershell
 products:
   - azure
   - azure-storage
@@ -13,47 +13,61 @@ products:
 urlFragment: update-this-to-unique-url-stub
 ---
 
-# Azure Storage Open Source Repo Template
+# AzStorageDiscoveryScripts
 
-This repository is a template to guide developers who want to release open-source projects under Microsoft’s Organizations, specifically for Azure.
-Update the README header and remove instructions.
-<!-- 
-Guidelines on README format: https://review.docs.microsoft.com/help/onboard/admin/samples/concepts/readme-template?branch=master
+This PowerShell script automates the migration of Azure Storage Discovery Workspace (ASDW) resources from an older API version (`2025-04-01-preview`) to a newer version (`2025-06-01-preview`). It fetches the existing resource, modifies its properties to match the new schema, creates a new resource with the updated API version, and deletes the old one.
 
-Guidance on onboarding samples to docs.microsoft.com/samples: https://review.docs.microsoft.com/help/onboard/admin/samples/process/onboarding?branch=master
+## Overview
 
-Taxonomies for products and languages: https://review.docs.microsoft.com/new-hope/information-architecture/metadata/taxonomies?branch=master
--->
+The script performs the following steps:
 
-Give a short description for your sample here. What does it do and why is it important?
-
-## Contents
-
-Sample outline of the file contents of the repository. Helps users navigate the codebase, build configuration and any related assets. Edit according to your project's structure.
-
-| File/folder       | Description                                |
-|-------------------|--------------------------------------------|
-| `src`             | Sample source code.                        |
-| `.gitignore`      | Define what to ignore at commit time.      |
-| `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
-| `README.md`       | This README file.                          |
-| `LICENSE`         | The license for the sample.                |
+1. Reads configuration values from a `config.txt` file.
+2. Logs all actions to a `DiscoveryMigrate.log` file.
+3. Downloads and extracts the latest ARMClient tool.
+4. Authenticates with Azure using `az login`.
+5. Fetches the existing ASDW resource.
+6. Modifies the resource properties to match the new API schema.
+7. Creates a new ASDW resource with the updated API version.
+8. Deletes the old ASDW resource.
 
 ## Prerequisites
 
-Outline the required components and tools that a user might need to have on their machine in order to run the sample. This can be anything from frameworks, SDKs, OS versions or IDE releases.
+- PowerShell 7.5 or later
+- Azure CLI installed and authenticated
+- Internet access to download ARMClient
+- Permissions to read/write ASDW resources in the specified subscription
 
-## Setup
+## Configuration
 
-Explain how to prepare the sample once the user clones or downloads the repository. The section should outline every step necessary to install dependencies and set up any settings (for example, API keys and output folders).
+Create a `config.txt` file in the same directory as the script with the following key-value pairs:
+- targetTenantId 
+- subscriptionId
+- resourceGroup
+- resourceName
 
-## Running the sample
+Note: Do nto add any quotes around the values.
 
-Outline step-by-step instructions to execute the sample and see its output. Include steps for executing the sample from the IDE, starting specific services in the Azure portal or anything related to the overall launch of the code.
+## Usage
 
-## Key concepts
+1. Place the script and `config.txt` in the same directory.
+2. Open PowerShell and navigate to the script directory.
+3. Run the script:
+   ```powershell
+   .\Migrate-ASDW.ps1
+   ```
 
-Provide users with more context on the tools and services used in the sample. Explain some of the code that is being used and how services interact with each other. Include existing https://learn.microsoft.com/ documentation, training, or code samples that might be related to the sample for more information.
+## Logging
+All actions and key events are logged to DiscoveryMigrate.log in the same directory as the script. This includes:
+
+Start and end of the script
+Resource fetch and transformation steps
+Creation and deletion of resources
+Any errors encountered
+
+The script uses ARMClient.exe to interact with Azure Resource Manager APIs directly.
+It replaces deprecated properties like discoveryScopes and discoveryScopeLevels with scopes and workspaceRoots.
+Ensure the original ASDW resource is not in use before deletion.
+Always review the log file for any issues or validation errors.
 
 ## Trademarks
 
