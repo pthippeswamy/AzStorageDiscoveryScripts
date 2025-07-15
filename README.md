@@ -15,7 +15,9 @@ urlFragment: update-this-to-unique-url-stub
 
 # AzStorageDiscoveryScripts
 
-This PowerShell script automates the migration of Azure Storage Discovery Workspace (ASDW) resources from an older API version (`2025-04-01-preview`) to a newer version (`2025-06-01-preview`). It fetches the existing resource, modifies its properties to match the new schema, creates a new resource with the updated API version, and deletes the old one.
+The PowerShell scripts automates the migration of Azure Storage Discovery Workspace (ASDW) resources from an older API version (`2025-04-01-preview`) to a newer version (`2025-06-01-preview`). It fetches the existing resource, modifies its properties to match the new schema, creates a new resource with the updated API version, and deletes the old one.
+Migrate_ASDW.ps1 uses ARMClient to do the migration.
+Migrate_ASDW_REST.ps1 invoked REST APIs to the migration.
 
 ## Overview
 
